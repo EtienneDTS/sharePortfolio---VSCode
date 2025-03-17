@@ -109,4 +109,73 @@ public class FournisseurTest {
         Jour jour = new Jour(2024, 2);
         Fournisseur.getAllAction(jour);
     }
+
+    @Test
+    public void testGetAllActionWithNullAction() {
+        Action action = new ActionSimple("Action1");
+        Fournisseur.addAction(action);
+        Fournisseur.addAction(null);
+
+        Jour jour = new Jour(2024, 2);
+        Fournisseur.getAllAction(jour);
+    }
+
+    @Test
+    public void testRemoveAction() {
+        Action action1 = new ActionSimple("Action1");
+        Action action2 = new ActionSimple("Action2");
+        Fournisseur.addAction(action1);
+        Fournisseur.addAction(action2);
+
+        Fournisseur.getActionPropose().remove(action1);
+        assertEquals(1, Fournisseur.getActionPropose().size());
+        assertFalse(Fournisseur.getActionPropose().contains(action1));
+    }
+
+    @Test
+    public void testAddMultipleActions() {
+        Action action1 = new ActionSimple("Action1");
+        Action action2 = new ActionSimple("Action2");
+        Action action3 = new ActionSimple("Action3");
+        
+        Fournisseur.addAction(action1);
+        Fournisseur.addAction(action2);
+        Fournisseur.addAction(action3);
+        
+        assertEquals(3, Fournisseur.getActionPropose().size());
+        assertTrue(Fournisseur.getActionPropose().contains(action1));
+        assertTrue(Fournisseur.getActionPropose().contains(action2));
+        assertTrue(Fournisseur.getActionPropose().contains(action3));
+    }
+
+    @Test
+    public void testAddSameActionTwice() {
+        Action action = new ActionSimple("Action1");
+        Fournisseur.addAction(action);
+        Fournisseur.addAction(action);
+
+        assertEquals(2, Fournisseur.getActionPropose().size());
+        assertEquals(action, Fournisseur.getActionPropose().get(0));
+        assertEquals(action, Fournisseur.getActionPropose().get(1));
+    }
+
+    @Test
+    public void testGetAllActionWithDifferentJour() {
+        Action action1 = new ActionSimple("Action1");
+        Action action2 = new ActionSimple("Action2");
+        Fournisseur.addAction(action1);
+        Fournisseur.addAction(action2);
+
+        Jour jour1 = new Jour(2024, 2);
+        Jour jour2 = new Jour(2024, 3);
+        Fournisseur.getAllAction(jour1);
+        Fournisseur.getAllAction(jour2);
+    }
+
+    @Test
+    public void testGetActionInListNegativeIndex() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            Fournisseur.getActionInList(-1);
+        });
+    }
 }
