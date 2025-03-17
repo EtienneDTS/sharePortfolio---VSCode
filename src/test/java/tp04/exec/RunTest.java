@@ -15,11 +15,7 @@
  */
 
 package tp04.exec;
-
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tp04.metier.*;
 
 public class RunTest {
 
