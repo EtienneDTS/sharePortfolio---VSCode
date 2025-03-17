@@ -25,20 +25,38 @@ import org.junit.jupiter.api.Test;
 class ActionTest {
 
     @Test
-    void testGetLibelle() {
-        final Action action = new ActionImpl();
-        Assertions.assertNotNull(action.getLibelle());
+    void testBuidActionWithCorrectLabel_success() {
+        Assertions.assertDoesNotThrow(new org.junit.jupiter.api.function.Executable() {
+        @Override
+        public void execute() throws Throwable {
+            // TODO Auto-generated method stub
+            new ActionImpl("cc!");
+        }
+        
+    });
+  }
+
+  @Test
+  void testBuildActionWithIncorrectLabel_failure(){
+    Assertions.assertThrows(IllegalArgumentException.class, new org.junit.jupiter.api.function.Executable() {
+      @Override
+      public void execute() throws Throwable {
+        // TODO Auto-generated method stub
+        new ActionImpl("");
+      }
+      
+    });
+  }
+
+ //action 是一个抽象方法，不能被实体化 即Action action = nwe action；所以要新实体化一个对象ActionImpl
+  private static class ActionImpl extends Action {
+
+    public ActionImpl(final String libelle) {
+      super(libelle);
     }
 
-    public class ActionImpl extends Action {
-
-        public ActionImpl() {
-            super("");
-        }
-
-        public float valeur(Jour j) {
-            return 0.0F;
-        }
+    public float valeur(Jour j) {
+      return 0.0F;
     }
-
+  }
 }
