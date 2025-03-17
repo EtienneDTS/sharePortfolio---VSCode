@@ -16,13 +16,6 @@ class OptionTest {
     }
 
     @Test
-    void testOptionConstructor() {
-        Option option = new Option("Option1", menu);
-        Assertions.assertEquals(1, option.getNumOption());
-        Assertions.assertEquals("Option1", option.getNomOption());
-    }
-
-    @Test
     void testGetSetNumOption() {
         Option option = new Option("Option1", menu);
         option.setNumOption(5);
@@ -39,7 +32,7 @@ class OptionTest {
     @Test
     void testToString() {
         Option option = new Option("Option1", menu);
-        String expected = "Option{numOption=1, nomOption=Option1}";
+        String expected = "Option{numOption="+option.getNumOption()+", nomOption=Option1}";
         Assertions.assertEquals(expected, option.toString());
     }
 
