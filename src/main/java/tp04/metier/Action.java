@@ -15,27 +15,26 @@
  */
 package tp04.metier;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-/**
- *
- * @author perussel
- */
 public abstract class Action {
 
     private String libelle;
+    private Map<Jour, Integer> cours;
 
-    /**
-     * Get the value of libelle
-     *
-     * @return the value of libelle
-     */
+    protected Action(String libelle) {
+        this.libelle = libelle;
+        this.cours = new HashMap<>();
+    }
+
     public String getLibelle() {
         return libelle;
     }
 
-    public Action(String libelle) {
-        this.libelle = libelle;
+    public Map<Jour, Integer> getCours() {
+        return this.cours;
     }
 
     public abstract float valeur(Jour j);
