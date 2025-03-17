@@ -25,11 +25,16 @@ public class Fournisseur {
         return actionPropose;
     }
 
-    public static void getAllAction (Jour jour) {
-        for (int i=0; i< actionPropose.size(); i++) {
-            System.out.println(i + ": " + actionPropose.get(i).toString() + " valeur: " + actionPropose.get(i).valeur(jour));
+    public static void getAllAction(Jour jour) {
+        for (Action action : actionPropose) {
+            if (action != null) {
+                System.out.println(action.toString());
+            } else {
+                System.out.println("Action null détectée !");
+            }
         }
     }
+    
 
     public static Action getActionInList (int index) {
         return actionPropose.get(index);
