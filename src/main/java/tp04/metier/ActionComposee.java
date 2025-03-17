@@ -28,7 +28,7 @@ public class ActionComposee extends Action {
 
     public ActionComposee(String libelle) {
         super(libelle);
-        this.mapPanier = new HashMap();
+        this.mapPanier = new HashMap<>();
     }
 
     public void enrgComposition(ActionSimple as, float pourcentage) {
