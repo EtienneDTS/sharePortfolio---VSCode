@@ -66,9 +66,10 @@ public class RunTest {
         bqAss.enrgComposition(axa, 0.3f);
         bqAss.enrgComposition(bnp, 0.7f);
 
-        assertEquals(2, bqAss.getCompositions().size(), "The composite action should have 2 components");
-        assertTrue(bqAss.getCompositions().containsKey(axa), "The composite action should contain AXA");
-        assertTrue(bqAss.getCompositions().containsKey(bnp), "The composite action should contain BNP");
+       
+        assertEquals(2, bqAss.mapPanier.size(), "The composite action should have 2 components");  
+        assertTrue(bqAss.mapPanier.containsKey(axa), "The composite action should contain AXA");
+        assertTrue(bqAss.mapPanier.containsKey(bnp), "The composite action should contain BNP");
     }
 
     @Test
