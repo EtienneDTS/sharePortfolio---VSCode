@@ -178,4 +178,31 @@ public class FournisseurTest {
             Fournisseur.getActionInList(-1);
         });
     }
+
+    @Test
+    public void testActionProposeSizeAfterRemoveAll() {
+        Action action1 = new ActionSimple("Action1");
+        Action action2 = new ActionSimple("Action2");
+        Fournisseur.addAction(action1);
+        Fournisseur.addAction(action2);
+        Fournisseur.getActionPropose().clear();
+        
+        assertEquals(0, Fournisseur.getActionPropose().size());
+    }
+
+    @Test
+    public void testAddNullToEmptyList() {
+        Fournisseur.addAction(null);
+        assertNull(Fournisseur.getActionInList(0));
+    }
+
+    @Test
+    public void testAddNullThenValidAction() {
+        Fournisseur.addAction(null);
+        Action action = new ActionSimple("Action1");
+        Fournisseur.addAction(action);
+        
+        assertEquals(2, Fournisseur.getActionPropose().size());
+        assertEquals(action, Fournisseur.getActionInList(1));
+    }
 }
