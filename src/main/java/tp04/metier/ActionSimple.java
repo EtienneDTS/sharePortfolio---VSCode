@@ -53,15 +53,10 @@ public class ActionSimple extends Action {
     private class Cours {
 
         private Jour jour;
-
         private float valeur;
 
         public float getValeur() {
             return valeur;
-        }
-
-        public Jour getJour() {
-            return jour;
         }
 
         public Cours(Jour jour, float valeur) {

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 public class RunTest {
 
     @Test
-    void testMain() {
+    void testMain () {
         Run.main(new String[0]);
     }
 }

@@ -15,12 +15,12 @@
  */
 package tp04.exec;
 
-import tp04.metier.Action;
+
 import tp04.metier.ActionComposee;
 import tp04.metier.ActionSimple;
 import tp04.metier.Fournisseur;
 import tp04.metier.Jour;
-import tp04.metier.Portefeuille;
+
 
 public class Run {
 

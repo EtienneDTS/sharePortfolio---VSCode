@@ -59,7 +59,7 @@ public class Portefeuille {
     }
 
     public void acheter(Action a, int q) {
-        if (this.mapLignes.containsKey(a) == false) {
+        if (!this.mapLignes.containsKey(a)) {
             this.mapLignes.put(a, new LignePortefeuille(a, q));
         } else {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
@@ -67,7 +67,7 @@ public class Portefeuille {
     }
 
     public void vendre(Action a, int q) {
-        if (this.mapLignes.containsKey(a) == true) {
+        if (this.mapLignes.containsKey(a)) {
             if (this.mapLignes.get(a).getQte() > q) {
                 this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
             } else if (this.mapLignes.get(a).getQte() == q) {
