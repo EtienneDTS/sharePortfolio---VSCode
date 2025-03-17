@@ -15,6 +15,9 @@
  */
 package tp04.metier;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +36,24 @@ public class MenuTest {
         
     });
   }
+     @Test
+    void testAfficherMenu() {
+        Menu menu = new Menu();
+        Option option1 = new Option("Option 1", menu);
+        Option option2 = new Option("Option 2", menu);
+
+        // Capture the output
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        menu.afficherMenu();
+
+        // Verify the output
+        String expectedOutput = Integer.toString(option1.getNumOption())+" : Option 1\n"+Integer.toString(option2.getNumOption())+" : Option 2\n";
+        Assertions.assertEquals(expectedOutput, outContent.toString().replace("\r\n", "\n"));
+
+        // Reset the standard output
+        System.setOut(System.out);
+    }
     
 }
