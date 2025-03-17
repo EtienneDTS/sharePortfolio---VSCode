@@ -13,7 +13,7 @@ public class FournisseurTest {
 
     @Test
     public void testAddAction() {
-        Action action = new Action("Action1");
+        Action action = new ActionSimple("Action1");
         Fournisseur.addAction(action);
         assertEquals(1, Fournisseur.getActionPropose().size(), "La liste doit contenir une action");
         assertEquals(action, Fournisseur.getActionPropose().get(0), "L'action ajoutée doit être récupérée correctement");
@@ -21,8 +21,8 @@ public class FournisseurTest {
 
     @Test
     public void testGetActionInList() {
-        Action action1 = new Action("Action1");
-        Action action2 = new Action("Action2");
+        Action action1 = new ActionSimple("Action1");
+        Action action2 = new ActionSimple("Action2");
         Fournisseur.addAction(action1);
         Fournisseur.addAction(action2);
 
@@ -32,7 +32,7 @@ public class FournisseurTest {
 
     @Test
     public void testGetActionPropose() {
-        Action action = new Action("Action1");
+        Action action = new ActionSimple("Action1");
         Fournisseur.addAction(action);
 
         assertNotNull(Fournisseur.getActionPropose(), "La liste des actions ne doit pas être nulle");
