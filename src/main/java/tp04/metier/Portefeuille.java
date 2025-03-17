@@ -55,7 +55,7 @@ public class Portefeuille {
     }
 
     public Portefeuille() {
-        this.mapLignes = new HashMap();
+        this.mapLignes = new HashMap<>();
     }
 
     public void acheter(Action a, int q) {
