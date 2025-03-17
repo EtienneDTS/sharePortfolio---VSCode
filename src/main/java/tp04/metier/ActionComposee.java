@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class ActionComposee extends Action {
     // attribut lien
-    Map<ActionSimple, Float> mapPanier;
+    public Map<ActionSimple, Float> mapPanier;
 
     public ActionComposee(String libelle) {
         super(libelle);
