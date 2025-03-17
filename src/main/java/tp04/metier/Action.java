@@ -24,6 +24,7 @@ import java.util.Objects;
 public abstract class Action {
 
     private String libelle;
+    private static final int LIBELLE_MAX = 3;
 
     /**
      * Get the value of libelle
@@ -35,7 +36,12 @@ public abstract class Action {
     }
 
     public Action(String libelle) {
-        this.libelle = libelle;
+        if(Objects.nonNull(libelle) && libelle.length() >= LIBELLE_MAX){
+            this.libelle = libelle;
+        }else{
+            throw  new IllegalArgumentException("libelle cannot be null or less than 3 caracteres");
+        }
+        
     }
 
     public abstract float valeur(Jour j);

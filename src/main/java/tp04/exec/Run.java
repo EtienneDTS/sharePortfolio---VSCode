@@ -15,59 +15,72 @@
  */
 package tp04.exec;
 
-import tp04.metier.Action;
-import tp04.metier.ActionComposee;
-import tp04.metier.ActionSimple;
-import tp04.metier.Jour;
-import tp04.metier.Portefeuille;
+import java.util.Scanner;
+
+import tp04.metier.Menu;
+import tp04.metier.Option;
 
 public class Run {
 
     public static void main(String[] args) {
-        ActionSimple bnp, axa;
-        ActionComposee bqAss;
-        Jour j1, j2;
+        System.out.println("Veuillez choisir une option : ");
 
-        // init des objets metiers Jour
-        j1 = new Jour(2014, 1);
-        j2 = new Jour(2014, 2);
+        Menu menu = new Menu();
 
-        // creation d'actions simples et composée
-        bnp = new ActionSimple("BNP");
-        axa = new ActionSimple("AXA");
-        bqAss = new ActionComposee("Banque-Assurance");
-        // enrg de la composition de l'action composée
-        bqAss.enrgComposition(axa, 0.3f);
-        bqAss.enrgComposition(bnp, 0.7f);
-        // enrg. de 2 cours pour chaque action 
-        axa.enrgCours(j1, 200);
-        axa.enrgCours(j2, 250);
-        bnp.enrgCours(j1, 100);
-        bnp.enrgCours(j2, 200);
-        // affichage des cours - comme 1 action simple et 1 action
-        System.out.println("Action simple *bnp* à j1 : " + bnp.valeur(j1));
-        System.out.println("Action *Banque-Assurance* à j2 : " + bqAss.valeur(j2));
+        Option option1 = new Option("Afficher la liste des Actions", menu);
+        Option option2 = new Option("Afficher la liste des Portefeuilles", menu);
 
-        Portefeuille p;
-        p = new Portefeuille();
-        p.acheter(axa, 10);
-        System.out.println("Portefeuille : " + p);
-        p.acheter(bnp, 20);
-        System.out.println("Portefeuille : " + p);
-        p.acheter(bqAss, 5);
-        System.out.println("Portefeuille : " + p);
-        p.acheter(bqAss, 15);
-        System.out.println("Portefeuille : " + p);
-        System.out.println("Portefeuille à j1 : " + p.valeur(j1));
-        p.vendre(axa, 5);
-        System.out.println("Portefeuille : " + p);
-        p.vendre(axa, 5);
-        System.out.println("Portefeuille : " + p);
-        p.vendre(axa, 5);
-        System.out.println("Portefeuille : " + p);
-        p.vendre(bnp, 50);
-        System.out.println("Portefeuille : " + p);
- 
+
+        while (true) {
+            menu.afficherMenu();
+            int choix = lireChoixUtilisateur();
+            traiterChoix(choix);
+        }
     }
 
+    private static int lireChoixUtilisateur() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Entrée non reconnue, veuillez entrer un nombre valide");
+            return -1;
+        }
+    }
+
+     private static void traiterChoix(int choix) {
+    //     try {
+    //         switch (choix) {
+    //             case 1:
+    //                 menu.
+    //                 break;
+    //             case 2:
+    //                 Functions.creerEleveEtAffecterMaison(eleveDAO, maisonDAO, scanner);
+    //                 break;
+    //             case 3:
+    //                 Functions.evaluerEleve(eleveDAO, matiereDAO, evaluerDAO, scanner);
+    //                 break;
+    //             case 4:
+    //                 Functions.afficherClassementMaisons(eleveDAO);
+    //                 break;
+    //             case 5:
+    //                 Functions.afficherTop10Eleves(eleveDAO);
+    //                 break;
+    //             case 6:
+    //                 jouerPartieChifoumi();
+    //                 break;
+    //             case 7:
+    //                 Functions.printWithDelay("🧙🏻 Au revoir !\n", 10);
+    //                 scanner.close();
+    //                 System.exit(0);
+    //             default:
+    //                 Functions.printWithDelay("Choix non reconnu, veuillez réessayer.\n", 10);
+    //         }
+    //     } catch (Exception e) {
+    //         Functions.printWithDelay("Une erreur est survenue : " + e.getMessage() + "\n", 10);
+    //         e.printStackTrace();
+    //     }
+     }
+
 }
+
