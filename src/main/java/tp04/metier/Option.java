@@ -62,6 +62,25 @@ public class Option {
         hash = 13 * hash + Objects.hashCode(this.nomOption);
         return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Option other = (Option) obj;
+        if (this.numOption != other.numOption) {
+            return false;
+        }
+        return Objects.equals(this.nomOption, other.nomOption);
+    }
+
     
     
 }
