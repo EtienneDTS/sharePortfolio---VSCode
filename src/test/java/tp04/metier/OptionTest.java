@@ -29,7 +29,7 @@ class OptionTest {
     @BeforeEach
     void setUp() {
         Option.resetUid();
-        menu = new Menu();
+        menu = new Menu(); 
     }
 
     // test pour vérifier la méthodes set et get de numOption
