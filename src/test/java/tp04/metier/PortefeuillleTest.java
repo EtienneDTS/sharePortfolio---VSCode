@@ -56,6 +56,8 @@ class PortefeuilleTest {
         assertEquals(portefeuille1, portefeuille1, "Un portefeuille doit être égal à lui-même");
         assertNotEquals(portefeuille1, portefeuille2, "Deux portefeuilles avec des IDs différents ne doivent pas être égaux");
         assertNotEquals(portefeuille1, portefeuille3, "Deux portefeuilles avec des noms ou utilisateurs différents ne doivent pas être égaux");
+        assertNotEquals(portefeuille1, null, "Un portefeuille ne doit jamais être égal à null");
+        assertNotEquals(portefeuille1, user1, "Un portefeuille ne doit jamais être égal à un objet d'un autre type");
     }
 
     @Test
@@ -69,5 +71,32 @@ class PortefeuilleTest {
 
         assertNotEquals(portefeuille1.hashCode(), portefeuille2.hashCode(), "Deux portefeuilles différents doivent avoir des hash codes différents");
         assertNotEquals(portefeuille1.hashCode(), portefeuille3.hashCode(), "Deux portefeuilles avec des noms ou utilisateurs différents doivent avoir des hash codes différents");
+    }
+
+    @Test
+    void testMontantNegatif() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Investissements", user);
+
+        portefeuille.setMontant(-500.0);
+
+        assertEquals(-500.0, portefeuille.getMontant(), "Le montant négatif doit être accepté (si c'est permis par les règles métier)");
+    }
+
+    @Test
+    void testMultiplePortefeuillesIncrementId() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille1 = new Portefeuille("Investissements", user);
+        Portefeuille portefeuille2 = new Portefeuille("Épargne", user);
+
+        assertTrue(portefeuille2.getId() > portefeuille1.getId(), "L'ID doit s'incrémenter pour chaque nouveau portefeuille créé");
+    }
+
+    @Test
+    void testNomVide() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("", user);
+
+        assertEquals("", portefeuille.getNom(), "Le portefeuille devrait accepter un nom vide (si c'est permis par les règles métier)");
     }
 }
