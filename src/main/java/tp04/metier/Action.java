@@ -22,7 +22,7 @@ import java.util.Objects;
 public abstract class Action {
 
     private String libelle;
-    private Map<Jour, Integer> cours;
+    private Map<Jour, Float> cours;
 
     protected Action(String libelle) {
         this.libelle = libelle;

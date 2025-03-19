@@ -21,11 +21,14 @@ import java.util.ArrayList;
 public class Fournisseur {
     private static ArrayList<Action> actionPropose = new ArrayList<>();
 
+    private Fournisseur () {  
+    }
+
     public static ArrayList<Action> getActionPropose () {
         return actionPropose;
     }
 
-    public static void getAllAction(Jour jour) {
+    public static void getAllAction() {
         for (Action action : actionPropose) {
             if (action != null) {
                 System.out.println(action.toString());
