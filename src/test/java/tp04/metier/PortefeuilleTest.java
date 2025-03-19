@@ -55,9 +55,13 @@ class PortefeuilleTest {
 
     @Test
     void testValeurPortefeuille() {
+        ActionSimple action3 = new ActionSimple("Capgemini");
+        ActionSimple action4 = new ActionSimple("Sopra");
+        action3.enrgCours(jour, 100f);
+        action4.enrgCours(jour, 5);
         portefeuille.acheter(action1, 10);
         portefeuille.acheter(action2, 5);
-        assertEquals(1000, portefeuille.valeur(jour), "La valeur totale du portefeuille ne correspond pas à la somme des actions.");
+        assertEquals(1025, portefeuille.valeur(jour), "La valeur totale du portefeuille ne correspond pas à la somme des actions.");
     }
 
     @Test
