@@ -25,13 +25,14 @@ class OptionTest {
 
     private Menu menu;
 
+    // avant chaque test, on réinitialise le uid pour que numOption commence à 1
     @BeforeEach
     void setUp() {
-        // 每次测试前，重置 uid，保证 numOption 从1开始，避免测试顺序影响
         Option.resetUid();
         menu = new Menu();
     }
 
+    // test pour vérifier la méthodes set et get de numOption
     @Test
     void testGetSetNumOption() {
         Option option = new Option("Option1", menu);
@@ -39,6 +40,7 @@ class OptionTest {
         Assertions.assertEquals(5, option.getNumOption());
     }
 
+    // test pour vérifier la méthodes set et get de nomOption
     @Test
     void testGetSetNomOption() {
         Option option = new Option("Option1", menu);
@@ -46,6 +48,7 @@ class OptionTest {
         Assertions.assertEquals("NewOption", option.getNomOption());
     }
 
+    // test le bon fonctionnement de la méthode toString
     @Test
     void testToString() {
         Option option = new Option("Option1", menu);
@@ -53,6 +56,7 @@ class OptionTest {
         Assertions.assertEquals(expected, option.toString());
     }
 
+    // test le bon fonctionnement des méthodes Hashcode (entre les différents objets)
     @Test
     void testHashCodeDifferentObjects() {
         Option option1 = new Option("Option1", menu);
@@ -60,6 +64,7 @@ class OptionTest {
         Assertions.assertNotEquals(option1.hashCode(), option2.hashCode(), "Hashcodes should differ because numOption differs");
     }
 
+    // test le bon fonctionnement des méthodes Hashcode (entre les mêmes objets)
     @Test
     void testHashCodeEqualObjects() {
         Option option1 = new Option("Option1", menu);
@@ -69,12 +74,14 @@ class OptionTest {
         Assertions.assertEquals(option1.hashCode(), option2.hashCode(), "Hashcodes should be equal");
     }
 
+    // test le bon fonctionnement des méthodes Eaquals (entre les mêmes références)
     @Test
     void testEqualsSameReference() {
         Option option1 = new Option("Option1", menu);
         Assertions.assertEquals(option1, option1);
     }
 
+    // test le bon fonctionnement des méthodes Eaquals (entre les différents références)
     @Test
     void testEqualsDifferentObjectsSameData() {
         Option option1 = new Option("Option1", menu);

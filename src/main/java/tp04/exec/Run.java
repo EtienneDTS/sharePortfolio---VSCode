@@ -15,8 +15,6 @@
  */
 package tp04.exec;
 
-import java.util.Scanner;
-
 import tp04.metier.Menu;
 import tp04.metier.Option;
 
@@ -31,56 +29,55 @@ public class Run {
         Option option2 = new Option("Afficher la liste des Portefeuilles", menu);
 
 
-        while (true) {
-            menu.afficherMenu();
-            int choix = lireChoixUtilisateur();
-            traiterChoix(choix);
-        }
+        System.out.println(menu.afficherMenu());
+        // int choix = lireChoixUtilisateur();
+        // traiterChoix(choix);
+        
     }
 
-    private static int lireChoixUtilisateur() {
-        Scanner scanner = new Scanner(System.in);
-        try {
-            return Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Entrée non reconnue, veuillez entrer un nombre valide");
-            return -1;
-        }
-    }
-
-     private static void traiterChoix(int choix) {
+    // private static int lireChoixUtilisateur() {
+    //     Scanner scanner = new Scanner(System.in);
     //     try {
-    //         switch (choix) {
-    //             case 1:
-    //                 menu.
-    //                 break;
-    //             case 2:
-    //                 Functions.creerEleveEtAffecterMaison(eleveDAO, maisonDAO, scanner);
-    //                 break;
-    //             case 3:
-    //                 Functions.evaluerEleve(eleveDAO, matiereDAO, evaluerDAO, scanner);
-    //                 break;
-    //             case 4:
-    //                 Functions.afficherClassementMaisons(eleveDAO);
-    //                 break;
-    //             case 5:
-    //                 Functions.afficherTop10Eleves(eleveDAO);
-    //                 break;
-    //             case 6:
-    //                 jouerPartieChifoumi();
-    //                 break;
-    //             case 7:
-    //                 Functions.printWithDelay("🧙🏻 Au revoir !\n", 10);
-    //                 scanner.close();
-    //                 System.exit(0);
-    //             default:
-    //                 Functions.printWithDelay("Choix non reconnu, veuillez réessayer.\n", 10);
-    //         }
-    //     } catch (Exception e) {
-    //         Functions.printWithDelay("Une erreur est survenue : " + e.getMessage() + "\n", 10);
-    //         e.printStackTrace();
+    //         return Integer.parseInt(scanner.nextLine());
+    //     } catch (NumberFormatException e) {
+    //         System.out.println("Entrée non reconnue, veuillez entrer un nombre valide");
+    //         return -1;
     //     }
-     }
+    // }
+
+    //  private static void traiterChoix(int choix) {
+    // //     try {
+    // //         switch (choix) {
+    // //             case 1:
+    // //                 menu.
+    // //                 break;
+    // //             case 2:
+    // //                 Functions.creerEleveEtAffecterMaison(eleveDAO, maisonDAO, scanner);
+    // //                 break;
+    // //             case 3:
+    // //                 Functions.evaluerEleve(eleveDAO, matiereDAO, evaluerDAO, scanner);
+    // //                 break;
+    // //             case 4:
+    // //                 Functions.afficherClassementMaisons(eleveDAO);
+    // //                 break;
+    // //             case 5:
+    // //                 Functions.afficherTop10Eleves(eleveDAO);
+    // //                 break;
+    // //             case 6:
+    // //                 jouerPartieChifoumi();
+    // //                 break;
+    // //             case 7:
+    // //                 Functions.printWithDelay("🧙🏻 Au revoir !\n", 10);
+    // //                 scanner.close();
+    // //                 System.exit(0);
+    // //             default:
+    // //                 Functions.printWithDelay("Choix non reconnu, veuillez réessayer.\n", 10);
+    // //         }
+    // //     } catch (Exception e) {
+    // //         Functions.printWithDelay("Une erreur est survenue : " + e.getMessage() + "\n", 10);
+    // //         e.printStackTrace();
+    // //     }
+    //  }
 
 }
 

@@ -21,17 +21,17 @@ import java.util.Objects;
 public class Menu {
     private List<Option> listeOptions;
 
-
+    // Constructor
     public Menu() {
         this.listeOptions = new ArrayList<>();
     }
 
-
+    // Obtenir la liste des options pour le teste (Uutil ne supprime pas)
     public List<Option> getListeOptions() {
         return this.listeOptions;
     }
 
-    // ajouter une option dans le menu 
+    // Ajouter une option dans le menu 
     public void ajouterOption(Option option){
         this.listeOptions.add(option);
     }
@@ -47,12 +47,6 @@ public class Menu {
         }
         return sb.toString();
     }
-
-    // public void afficherMenu(){
-    //     for(Option option : this.listeOptions){
-    //         System.out.println(option.getNumOption() + " : " + option.getNomOption());
-    //     }
-    // }
 
     @Override
     public String toString() {

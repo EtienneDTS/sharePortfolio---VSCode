@@ -24,7 +24,7 @@ import java.util.Objects;
 public abstract class Action {
 
     private String libelle;
-    private static final int LIBELLE_MAX = 3;
+    private static final int NB_CHAR_MIN_LIBELLE = 3;
 
     /**
      * Get the value of libelle
@@ -36,7 +36,7 @@ public abstract class Action {
     }
 
     public Action(String libelle) {
-        if(Objects.nonNull(libelle) && libelle.length() >= LIBELLE_MAX){
+        if(Objects.nonNull(libelle) && libelle.length() >= NB_CHAR_MIN_LIBELLE){
             this.libelle = libelle;
         }else{
             throw  new IllegalArgumentException("libelle cannot be null or less than 3 caracteres");

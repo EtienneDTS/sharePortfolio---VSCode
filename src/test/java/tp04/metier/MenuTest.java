@@ -20,7 +20,8 @@ import org.junit.jupiter.api.Test;
 
 public class MenuTest {
 
-    @Test
+    // test pour véridier la bonne création d'un menu avec des paramètres corrects
+    @Test 
     void testCreateMenuWithCorrectParameters() {
         Assertions.assertDoesNotThrow(() -> {
             Menu menu = new Menu();
@@ -29,6 +30,7 @@ public class MenuTest {
         });
     }
 
+    // test pour vérifier l'affichage du menu avec des options
     @Test
     void testAfficherMenu() {
         Menu menu = new Menu();
@@ -44,6 +46,7 @@ public class MenuTest {
         Assertions.assertEquals(expectedOutput, actualOutput);
     }
 
+    // test le bon fonctionnement de la méthode toString
     @Test
     void testMenuToString() {
         Menu menu = new Menu();
@@ -53,6 +56,7 @@ public class MenuTest {
         Assertions.assertEquals(expected, menu.toString());
     }
 
+    // test le bon fonctionnement des méthodes Eaquals et Hashcode 
     @Test
     void testMenuEqualsAndHashCode() {
         Menu menu1 = new Menu();
@@ -60,7 +64,6 @@ public class MenuTest {
 
         Option option1 = new Option("Option 1", menu1);
 
-        // 复制 option1 到 menu2，保持一致
         menu2.ajouterOption(option1);
 
         Assertions.assertEquals(menu1, menu2);

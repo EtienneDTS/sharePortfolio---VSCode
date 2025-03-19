@@ -18,11 +18,13 @@ package tp04.metier;
 import java.util.Objects;
 
 public class Option {
-    private static int uid =0;
 
+    // Attribut
+    private static int uid =0;
     private int numOption;
     private String nomOption;
 
+    // Constructor
     public Option (String nomOption, Menu menu){
         uid ++;
 		this.numOption = uid;
@@ -30,22 +32,21 @@ public class Option {
         menu.ajouterOption(this);
     }
 
+    // Réinitialiser le uid pour chaque option
     public static void resetUid() {
         uid = 0;
     }
 
+    // getter & setter 
     public int getNumOption() {
         return this.numOption;
     }
-
     public void setNumOption(int numOption) {
         this.numOption = numOption;
     }
-
     public String getNomOption() {
         return this.nomOption;
     }
-
     public void setNomOption(String nomOption) {
         this.nomOption = nomOption;
     }
