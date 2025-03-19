@@ -24,11 +24,11 @@ public class ActionSimple extends Action {
     }
 
     public void enrgCours(Jour j, float v) {
-        getCours().put(j, (int) v);
+        getCours().put(j, (Float) v);
     }
 
     @Override
     public float valeur(Jour j) {
-        return getCours().getOrDefault(j, 0);
+        return getCours().getOrDefault(j, 0f);
     }
 }
