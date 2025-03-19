@@ -32,7 +32,7 @@ class ActionComposeeTest {
     @BeforeEach
     void setUp() {
         actionComposee = new ActionComposee("CompositeAction");
-        actionSimple1 = new ActionSimple("AXA");
+        actionSimple1 = new ActionSimple("IBM");
         actionSimple2 = new ActionSimple("LVMH");
         jour = new Jour(2025, 3);
     }
@@ -92,21 +92,5 @@ class ActionComposeeTest {
         assertEquals(action1, action2, "Les actions composées avec le même libellé doivent être égales.");
         assertNotEquals(action1, action3, "Les actions composées avec des libellés différents doivent être différentes.");
         assertEquals(action1.hashCode(), action2.hashCode(), "Les actions composées avec le même libellé doivent avoir le même hashcode.");
-    }
-
-    public class ActionSimple extends Action {
-
-        public ActionSimple(String libelle) {
-            super(libelle);
-        }
-
-        @Override
-        public float valeur(Jour j) {
-            return 0.0F;
-        }
-
-        public void enrgCours(Jour j, float valeur) {
-            // Simulating a method to register the value for a specific day
-        }
     }
 }
