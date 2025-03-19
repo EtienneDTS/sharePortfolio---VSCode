@@ -19,18 +19,23 @@ import java.util.Objects;
 
 public class Option {
     private static int uid =0;
+
     private int numOption;
     private String nomOption;
 
     public Option (String nomOption, Menu menu){
-        uid += 1;
+        uid ++;
 		this.numOption = uid;
 		this.nomOption = nomOption;
         menu.ajouterOption(this);
     }
 
+    public static void resetUid() {
+        uid = 0;
+    }
+
     public int getNumOption() {
-        return numOption;
+        return this.numOption;
     }
 
     public void setNumOption(int numOption) {
@@ -38,7 +43,7 @@ public class Option {
     }
 
     public String getNomOption() {
-        return nomOption;
+        return this.nomOption;
     }
 
     public void setNomOption(String nomOption) {
@@ -56,11 +61,17 @@ public class Option {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Option option = (Option) o;
+        return numOption == option.numOption &&
+                Objects.equals(nomOption, option.nomOption);
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + this.numOption;
-        hash = 13 * hash + Objects.hashCode(this.nomOption);
-        return hash;
+        return Objects.hash(numOption, nomOption);
     }
     
     

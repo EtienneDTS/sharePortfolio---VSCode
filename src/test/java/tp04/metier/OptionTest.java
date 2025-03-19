@@ -27,6 +27,8 @@ class OptionTest {
 
     @BeforeEach
     void setUp() {
+        // 每次测试前，重置 uid，保证 numOption 从1开始，避免测试顺序影响
+        Option.resetUid();
         menu = new Menu();
     }
 
@@ -47,24 +49,44 @@ class OptionTest {
     @Test
     void testToString() {
         Option option = new Option("Option1", menu);
-        String expected = "Option{numOption="+option.getNumOption()+", nomOption=Option1}";
+        String expected = "Option{numOption=1, nomOption=Option1}";
         Assertions.assertEquals(expected, option.toString());
     }
 
     @Test
-    void testHashCode() {
+    void testHashCodeDifferentObjects() {
         Option option1 = new Option("Option1", menu);
         Option option2 = new Option("Option1", menu);
-        Assertions.assertNotEquals(option1.hashCode(), option2.hashCode());
+        Assertions.assertNotEquals(option1.hashCode(), option2.hashCode(), "Hashcodes should differ because numOption differs");
     }
 
     @Test
-    void testEquals() {
+    void testHashCodeEqualObjects() {
         Option option1 = new Option("Option1", menu);
         Option option2 = new Option("Option1", menu);
-        Option option3 = new Option("Option2", menu);
-        Assertions.assertNotEquals(option1, option2);
-        Assertions.assertNotEquals(option1, option3);
+        // Manually synchronize numOption to test equality
+        option2.setNumOption(option1.getNumOption());
+        Assertions.assertEquals(option1.hashCode(), option2.hashCode(), "Hashcodes should be equal");
+    }
+
+    @Test
+    void testEqualsSameReference() {
+        Option option1 = new Option("Option1", menu);
         Assertions.assertEquals(option1, option1);
     }
+
+    @Test
+    void testEqualsDifferentObjectsSameData() {
+        Option option1 = new Option("Option1", menu);
+        Option option2 = new Option("Option1", menu);
+
+        // Same nomOption, but numOption differs => not equal
+        Assertions.assertNotEquals(option1, option2);
+
+        // Now align numOption to make them logically equal
+        option2.setNumOption(option1.getNumOption());
+
+        Assertions.assertEquals(option1, option2);
+    }
+
 }

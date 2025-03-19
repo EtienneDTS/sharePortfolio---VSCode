@@ -15,9 +15,6 @@
  */
 package tp04.metier;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,35 +22,49 @@ public class MenuTest {
 
     @Test
     void testCreateMenuWithCorrectParameters() {
-        Assertions.assertDoesNotThrow(new org.junit.jupiter.api.function.Executable() {
-        @Override
-        public void execute() throws Throwable {
-            // TODO Auto-generated method stub
+        Assertions.assertDoesNotThrow(() -> {
             Menu menu = new Menu();
             Option option = new Option("Test", menu);
-            Assertions.assertEquals("Test", menu.getListeOptions().get(0).getNomOption());
-        }
-        
-    });
-  }
-     @Test
+            Assertions.assertEquals(option.getNomOption(), menu.getListeOptions().get(0).getNomOption());
+        });
+    }
+
+    @Test
     void testAfficherMenu() {
         Menu menu = new Menu();
         Option option1 = new Option("Option 1", menu);
         Option option2 = new Option("Option 2", menu);
 
-        // Capture the output
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        String expectedOutput =
+                option1.getNumOption() + " : " + option1.getNomOption() + "\n" +
+                option2.getNumOption() + " : " + option2.getNomOption() + "\n";
 
-        menu.afficherMenu();
+        String actualOutput = menu.afficherMenu();
 
-        // Verify the output
-        String expectedOutput = Integer.toString(option1.getNumOption())+" : Option 1\n"+Integer.toString(option2.getNumOption())+" : Option 2\n";
-        Assertions.assertEquals(expectedOutput, outContent.toString().replace("\r\n", "\n"));
+        Assertions.assertEquals(expectedOutput, actualOutput);
+    }
 
-        // Reset the standard output
-        System.setOut(System.out);
+    @Test
+    void testMenuToString() {
+        Menu menu = new Menu();
+        Option option = new Option("Test Option", menu);
+
+        String expected = "Menu{listeOptions=[" + option.toString() + "]}";
+        Assertions.assertEquals(expected, menu.toString());
+    }
+
+    @Test
+    void testMenuEqualsAndHashCode() {
+        Menu menu1 = new Menu();
+        Menu menu2 = new Menu();
+
+        Option option1 = new Option("Option 1", menu1);
+
+        // 复制 option1 到 menu2，保持一致
+        menu2.ajouterOption(option1);
+
+        Assertions.assertEquals(menu1, menu2);
+        Assertions.assertEquals(menu1.hashCode(), menu2.hashCode());
     }
     
 }
