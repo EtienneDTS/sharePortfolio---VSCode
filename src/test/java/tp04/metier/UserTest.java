@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- package tp04.metier;
+package tp04.metier;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * 
  * @version 1.0
  */
-
 
 class UserTest {
 
@@ -49,32 +48,33 @@ class UserTest {
         assertEquals("Luc", user.getPrenom());
     }
 
-    // @Test
-    // void testToString() {
-    //     // Arrange
-    //     User user = new User("Nom", "Prenom");
-
-    //     // Act
-    //     String result = user.toString();
-
-    //     // Assert
-    //     assertNotNull(result, "The toString method should not return null");
-    // }
-
     @Test
     void testToString() {
-    // Arrange
-    User user = new User("Nom", "Prenom");
+        User user = new User("Nom", "Prenom");
 
-    // Act
-    String result = user.toString();
+        String result = user.toString();
 
-    // Assert
-    assertNotNull(result, "The toString method should not return null");
-    assertTrue(result.contains("Nom"), "The toString method should include the user's last name");
-    assertTrue(result.contains("Prenom"), "The toString method should include the user's first name");
-}
+        assertNotNull(result, "The toString method should not return null");
+        assertTrue(result.contains("Nom"), "The toString method should include the user's last name");
+        assertTrue(result.contains("Prenom"), "The toString method should include the user's first name");
+    }
 
+    @Test
+    void testEquals() {
+        User user1 = new User("Dupont", "Jean");
+        User user2 = new User("Dupont", "Jean");
+        User user3 = new User("Durand", "Paul");
 
-   
+        assertEquals(user1, user1, "A user should be equal to itself");
+        assertNotEquals(user1, user2, "Users with different IDs should not be equal");
+        assertNotEquals(user1, user3, "Users with different names and IDs should not be equal");
+    }
+
+    @Test
+    void testHashCode() {
+        User user1 = new User("Dupont", "Jean");
+        User user2 = new User("Dupont", "Jean");
+
+        assertNotEquals(user1.hashCode(), user2.hashCode(), "Users with different IDs should have different hash codes");
+    }
 }

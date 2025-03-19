@@ -23,10 +23,14 @@ public class User {
 
     private String nom;
     private String prenom;
+    private int id;
+    private static int idCounter = 0;
     private List<Portefeuille> portefeuilles;
 
     public User(String nom, String prenom) {
+        idCounter++;
         this.nom = nom;
+        this.id = idCounter;
         this.prenom = prenom;
         this.portefeuilles = new ArrayList<>(); 
     }
@@ -36,6 +40,10 @@ public class User {
     public String getNom() {
         return nom;
     }
+    public int getId() {
+        return id;
+    }
+    
     public String getPrenom() {
         return prenom;
     }
@@ -46,6 +54,10 @@ public class User {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
@@ -55,10 +67,25 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{nom='" + nom + "', prenom='" + prenom + "', portefeuilles=" + portefeuilles.size() + "}";
+        return "User{nom='" + nom + "', prenom='" + prenom + "', portefeuilles=" + portefeuilles.size() + "id=" + id +  "}";
     }
 
-    
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+               nom.equals(user.nom) &&
+               prenom.equals(user.prenom);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Integer.hashCode(id);
+        result = 31 * result + (nom != null ? nom.hashCode() : 0);
+        result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
+        return result;
+    }
 }
 
