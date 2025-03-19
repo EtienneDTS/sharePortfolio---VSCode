@@ -33,7 +33,7 @@ public abstract class Action {
         return libelle;
     }
 
-    public Map<Jour, Integer> getCours() {
+    public Map<Jour, Float> getCours() {
         return this.cours;
     }
 
