@@ -48,6 +48,47 @@ class UserTest {
     }
 
     @Test
+    void testAddPortefeuilleNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(IllegalArgumentException.class, 
+            () -> user.addPortefeuille(null), 
+            "L'ajout d'un portefeuille null devrait lancer une exception IllegalArgumentException");
+    }
+
+    @Test
+    void testGetPortefeuilleByIdInexistant() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille A", user);
+        user.addPortefeuille(portefeuille);
+
+        Portefeuille result = user.getPortefeuilleById(999);  // ID inexistant
+        assertEquals(null, result, "La méthode devrait retourner null si aucun portefeuille avec l'ID donné n'est trouvé");
+    }
+
+    @Test
+    void testNomSetterAvecNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(NullPointerException.class, 
+            () -> user.setNom(null), 
+            "Le setter pour le nom devrait lancer une exception NullPointerException si le nom est null");
+    }
+
+    @Test
+    void testPrenomSetterAvecNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(NullPointerException.class, 
+            () -> user.setPrenom(null), 
+            "Le setter pour le prénom devrait lancer une exception NullPointerException si le prénom est null");
+    }
+
+    @Test
+    void testSetIdNegative() {
+        User user = new User("Durand", "Paul");
+        user.setId(-5);
+        assertEquals(-5, user.getId(), "L'ID devrait pouvoir être défini sur une valeur négative, même si cela n'est pas logique");
+    }
+
+    @Test
     public void testAddPortefeuille() {
         User user = new User("Dupont", "Jean");
         Portefeuille portefeuille = new Portefeuille("Portefeuille A", user);

@@ -58,15 +58,23 @@ public class User {
     }
 
     public void setNom(String nom) {
+        if (nom == null) {
+            throw new NullPointerException("Le nom ne peut pas être null");
+        }
         this.nom = nom;
+    }
+    
+    public void setPrenom(String prenom) {
+        if (prenom == null) {
+            throw new NullPointerException("Le prénom ne peut pas être null");
+        }
+        this.prenom = prenom;
     }
 
     public void setId(int id) {
         this.id = id;
     }
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+
     public void setPortefeuilles(List<Portefeuille> portefeuilles) {
         this.portefeuilles = portefeuilles;
     }
