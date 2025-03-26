@@ -38,6 +38,22 @@ class UserTest {
     }
 
     @Test
+    void testEqualsAvecObjetNonUser() {
+    User user = new User("Dupont", "Jean");
+    String autreObjet = "NonUserObject";
+
+    assertNotEquals(user, autreObjet, "La méthode equals doit retourner false lorsqu'elle est comparée à un objet d'une autre classe");
+    }
+
+    @Test
+    void testConstructeurAvecParametresInvalides() {
+        assertThrows(NullPointerException.class, () -> new User(null, "Jean"),
+        "Le constructeur devrait lancer une exception si le nom est null");
+        assertThrows(NullPointerException.class, () -> new User("Dupont", null),
+        "Le constructeur devrait lancer une exception si le prénom est null");
+    }
+
+    @Test
     void testSetters() {
         User user = new User("Durand", "Paul");
 
@@ -71,10 +87,25 @@ class UserTest {
     }
 
     @Test
+    void testIncrementId() {
+    User user1 = new User("Dupont", "Jean");
+    User user2 = new User("Durand", "Paul");
+
+    assertTrue(user2.getId() > user1.getId(), "L'ID du deuxième utilisateur doit être supérieur à celui du premier");
+}
+
+    @Test
     void testHashCode() {
         User user1 = new User("Dupont", "Jean");
         User user2 = new User("Dupont", "Jean");
 
         assertNotEquals(user1.hashCode(), user2.hashCode(), "Users with different IDs should have different hash codes");
     }
+
+    @Test
+    void testHashCodeAvecObjetsIdentiques() {
+    User user = new User("Dupont", "Jean");
+
+    assertEquals(user.hashCode(), user.hashCode(), "Deux références au même objet doivent avoir le même hash code");
+}
 }
