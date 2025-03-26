@@ -28,11 +28,17 @@ public class User {
     private List<Portefeuille> portefeuilles;
 
     public User(String nom, String prenom) {
+        if (nom == null) {
+            throw new NullPointerException("Le nom ne peut pas être null");
+        }
+        if (prenom == null) {
+            throw new NullPointerException("Le prénom ne peut pas être null");
+        }
         idCounter++;
         this.nom = nom;
         this.id = idCounter;
         this.prenom = prenom;
-        this.portefeuilles = new ArrayList<>(); 
+        this.portefeuilles = new ArrayList<>();
     }
 
 
