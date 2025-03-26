@@ -15,33 +15,26 @@
  */
 package tp04.metier;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-/**
- *
- * @author perussel
- */
 public abstract class Action {
 
     private String libelle;
-    private static final int NB_CHAR_MIN_LIBELLE = 3;
+    private Map<Jour, Float> cours;
 
-    /**
-     * Get the value of libelle
-     *
-     * @return the value of libelle
-     */
+    protected Action(String libelle) {
+        this.libelle = libelle;
+        this.cours = new HashMap<>();
+    }
+
     public String getLibelle() {
         return libelle;
     }
 
-    public Action(String libelle) {
-        if(Objects.nonNull(libelle) && libelle.length() >= NB_CHAR_MIN_LIBELLE){
-            this.libelle = libelle;
-        }else{
-            throw  new IllegalArgumentException("libelle cannot be null or less than 3 caracteres");
-        }
-        
+    public Map<Jour, Float> getCours() {
+        return this.cours;
     }
 
     public abstract float valeur(Jour j);

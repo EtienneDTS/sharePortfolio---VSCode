@@ -15,24 +15,39 @@
  */
 package tp04.exec;
 
-import tp04.metier.Menu;
-import tp04.metier.Option;
+import tp04.metier.ActionComposee;
+import tp04.metier.ActionSimple;
+import tp04.metier.Fournisseur;
+import tp04.metier.Jour;
+
 
 public class Run {
 
     public static void main(String[] args) {
-        System.out.println("Veuillez choisir une option : ");
+        ActionSimple bnp;
+        ActionSimple axa;
+        ActionComposee bqAss;
+        Jour j1;
+        Jour j2;
 
         Menu menu = new Menu();
 
-        Option option1 = new Option("Afficher la liste des Actions", menu);
-        Option option2 = new Option("Afficher la liste des Portefeuilles", menu);
+        // creation d'actions simples et composée
+        bnp = new ActionSimple("BNP");
+        axa = new ActionSimple("AXA");
+        bqAss = new ActionComposee("Banque-Assurance");
+        // enrg de la composition de l'action composée
+        bqAss.enrgComposition(axa, 0.3f);
+        bqAss.enrgComposition(bnp, 0.7f);
+        // enrg. de 2 cours pour chaque action 
+        axa.enrgCours(j1, 200);
+        axa.enrgCours(j2, 250);
+        bnp.enrgCours(j1, 100);
+        bnp.enrgCours(j2, 200);
 
-
-        System.out.println(menu.afficherMenu());
-        // int choix = lireChoixUtilisateur();
-        // traiterChoix(choix);
-        
+        Fournisseur.addAction(bqAss);
+        Fournisseur.addAction(axa);
+        Fournisseur.addAction(bnp);
     }
 
     // private static int lireChoixUtilisateur() {

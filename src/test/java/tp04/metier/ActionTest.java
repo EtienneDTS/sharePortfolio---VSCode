@@ -15,48 +15,79 @@
  */
 package tp04.metier;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
- *
- * @author David Navarre &lt;David.Navarre at irit.fr&gt;
+ * Tests unitaires pour la classe Action et ses implémentations.
  */
 class ActionTest {
 
+    private Action actionImpl;
+    private ActionSimple actionSimple;
+    private Jour jour;
+
+    @BeforeEach
+    void setUp() {
+        actionImpl = new ActionImpl("TestAction");
+        actionSimple = new ActionSimple("AXA");
+        jour = new Jour(2025, 3); 
+    }
+
     @Test
-    void testBuidActionWithCorrectLabel_success() {
-        Assertions.assertDoesNotThrow(new org.junit.jupiter.api.function.Executable() {
-        @Override
-        public void execute() throws Throwable {
-            // TODO Auto-generated method stub
-            new ActionImpl("cc!");
-        }
+    void testGetLibelle() {
+        assertNotNull(actionImpl.getLibelle(), "Le libellé de l'action ne doit pas être nul.");
+    }
+
+    @Test
+    void testLibelleCorrect() {
+        assertEquals("TestAction", actionImpl.getLibelle(), "Le libellé de l'action doit être 'TestAction'.");
+    }
+
+    @Test
+    void testValeurActionImpl() {
+        assertEquals(0.0F, actionImpl.valeur(jour), "La valeur de l'action implémentée doit être 0.");
+    }
+
+    @Test
+    void testEnregCours() {
+        actionSimple.enrgCours(jour, 100.5F);
+
+        assertEquals(100.5F, actionSimple.valeur(jour), "La valeur de l'action AXA pour ce jour devrait être 100.5.");
+    }
+
+    @Test
+    void testValeurActionSimple() {
         
-    });
-  }
-
-  @Test
-  void testBuildActionWithIncorrectLabel_failure(){
-    Assertions.assertThrows(IllegalArgumentException.class, new org.junit.jupiter.api.function.Executable() {
-      @Override
-      public void execute() throws Throwable {
-        // TODO Auto-generated method stub
-        new ActionImpl("");
-      }
-      
-    });
-  }
-
- //action 是一个抽象方法，不能被实体化 即Action action = nwe action；所以要新实体化一个对象ActionImpl
-  private static class ActionImpl extends Action {
-
-    public ActionImpl(final String libelle) {
-      super(libelle);
+        actionSimple.enrgCours(jour, 100.5F);
+        assertEquals(100.5F, actionSimple.valeur(jour), "La valeur de l'action simple AXA doit être 100.5.");
+       
+        Jour jourFutur = new Jour(2025, 4);
+        assertEquals(0.0F, actionSimple.valeur(jourFutur), "La valeur de l'action AXA pour un jour sans cours doit être 0.");
     }
 
-    public float valeur(Jour j) {
-      return 0.0F;
+    @Test
+    void testEqualsAndHashCode() {
+        Action action1 = new ActionImpl("TestAction");
+        Action action2 = new ActionImpl("TestAction");
+        Action action3 = new ActionImpl("DifferentAction");
+        assertEquals(action1, action2, "Les actions avec le même libellé doivent être égales.");
+        assertNotEquals(action1, action3, "Les actions avec des libellés différents doivent être différentes.");
+        assertEquals(action1.hashCode(), action2.hashCode(), "Les actions avec le même libellé doivent avoir le même hashcode.");
     }
-  }
+
+    
+    public class ActionImpl extends Action {
+
+        public ActionImpl(String libelle) {
+            super(libelle);
+        }
+
+        @Override
+        public float valeur(Jour j) {
+            return 0.0F; 
+        }
+    }
 }
