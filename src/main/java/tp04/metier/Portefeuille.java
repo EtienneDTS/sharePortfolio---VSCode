@@ -1,6 +1,9 @@
 package tp04.metier;
 
+import java.util.logging.Logger;
+
 public class Portefeuille {
+    private static final Logger logger = Logger.getLogger(Portefeuille.class.getName());
     private String nom;
     private double montant;
     private User user;
@@ -42,6 +45,14 @@ public class Portefeuille {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    //Nommage du portefeuille        
+    public void nommerPortefeuille(String nouveauNom) {
+        setNom(nouveauNom);
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info(String.format("Le portefeuille a été nommé: %s", nouveauNom));
+        }
     }
 
     @Override

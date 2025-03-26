@@ -137,6 +137,17 @@ class PortefeuilleTest {
     }
 
     @Test
+    void testNommerPortefeuille() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Investissements", user);
+
+        portefeuille.nommerPortefeuille("Nouveau Nom");
+
+        assertEquals("Nouveau Nom", portefeuille.getNom(), "Le nom du portefeuille doit être mis à jour avec le nouveau nom");
+    }
+
+
+    @Test
     void testNomVide() {
         User user = new User("Dupont", "Jean");
         Portefeuille portefeuille = new Portefeuille("", user);
