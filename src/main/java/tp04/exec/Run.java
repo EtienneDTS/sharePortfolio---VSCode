@@ -15,36 +15,26 @@
  */
 package tp04.exec;
 
-<<<<<<< HEAD
 
 import tp04.metier.ActionComposee;
 import tp04.metier.ActionSimple;
 import tp04.metier.Fournisseur;
 import tp04.metier.Jour;
 
-=======
-import java.util.Scanner;
-
-import tp04.metier.Menu;
-import tp04.metier.Option;
->>>>>>> f012249 (Feat: ajout de tests unitaires pour la création du menu avec options)
 
 public class Run {
 
     public static void main(String[] args) {
-<<<<<<< HEAD
         ActionSimple bnp;
         ActionSimple axa;
         ActionComposee bqAss;
         Jour j1;
         Jour j2;
-=======
-        System.out.println("Veuillez choisir une option : ");
->>>>>>> f012249 (Feat: ajout de tests unitaires pour la création du menu avec options)
 
-        Menu menu = new Menu();
+        // init des objets metiers Jour
+        j1 = new Jour(2014, 1);
+        j2 = new Jour(2014, 2);
 
-<<<<<<< HEAD
         // creation d'actions simples et composée
         bnp = new ActionSimple("BNP");
         axa = new ActionSimple("AXA");
@@ -62,62 +52,6 @@ public class Run {
         Fournisseur.addAction(axa);
         Fournisseur.addAction(bnp);
  
-=======
-        Option option1 = new Option("Afficher la liste des Actions", menu);
-        Option option2 = new Option("Afficher la liste des Portefeuilles", menu);
-
-
-        while (true) {
-            menu.afficherMenu();
-            int choix = lireChoixUtilisateur();
-            traiterChoix(choix);
-        }
->>>>>>> f012249 (Feat: ajout de tests unitaires pour la création du menu avec options)
     }
-
-    private static int lireChoixUtilisateur() {
-        Scanner scanner = new Scanner(System.in);
-        try {
-            return Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Entrée non reconnue, veuillez entrer un nombre valide");
-            return -1;
-        }
-    }
-
-     private static void traiterChoix(int choix) {
-    //     try {
-    //         switch (choix) {
-    //             case 1:
-    //                 menu.
-    //                 break;
-    //             case 2:
-    //                 Functions.creerEleveEtAffecterMaison(eleveDAO, maisonDAO, scanner);
-    //                 break;
-    //             case 3:
-    //                 Functions.evaluerEleve(eleveDAO, matiereDAO, evaluerDAO, scanner);
-    //                 break;
-    //             case 4:
-    //                 Functions.afficherClassementMaisons(eleveDAO);
-    //                 break;
-    //             case 5:
-    //                 Functions.afficherTop10Eleves(eleveDAO);
-    //                 break;
-    //             case 6:
-    //                 jouerPartieChifoumi();
-    //                 break;
-    //             case 7:
-    //                 Functions.printWithDelay("🧙🏻 Au revoir !\n", 10);
-    //                 scanner.close();
-    //                 System.exit(0);
-    //             default:
-    //                 Functions.printWithDelay("Choix non reconnu, veuillez réessayer.\n", 10);
-    //         }
-    //     } catch (Exception e) {
-    //         Functions.printWithDelay("Une erreur est survenue : " + e.getMessage() + "\n", 10);
-    //         e.printStackTrace();
-    //     }
-     }
 
 }
-
