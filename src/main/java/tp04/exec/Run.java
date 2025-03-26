@@ -28,8 +28,8 @@ public class Run {
         ActionSimple bnp;
         ActionSimple axa;
         ActionComposee bqAss;
-        Jour j1;
-        Jour j2;
+        Jour j1 = null;
+        Jour j2 = null;
 
         Menu menu = new Menu();
 
