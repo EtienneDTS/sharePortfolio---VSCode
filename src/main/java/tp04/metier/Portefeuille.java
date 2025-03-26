@@ -1,11 +1,17 @@
 package tp04.metier;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Portefeuille {
     private String nom;
     private double montant;
     private User user;
     private static int idCounter = 0;
     private int id;
+    private List<Action> actionsList; // Liste des actions propre à chaque portefeuille
+
 
     public Portefeuille(String nom, User user) {
         idCounter++;
@@ -13,6 +19,7 @@ public class Portefeuille {
         this.montant = 0.0;
         this.user = user;
         this.id = idCounter;
+        this.actionsList = new ArrayList<>(); // Initialisation de la liste d'actions
     }
 
     public String getNom() {
@@ -25,6 +32,10 @@ public class Portefeuille {
 
     public int getId() {
         return id;
+    }
+
+    public List<Action> getActions() {
+        return actionsList;
     }
 
 

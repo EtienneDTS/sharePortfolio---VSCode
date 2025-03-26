@@ -3,6 +3,8 @@ package tp04.metier;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 class PortefeuilleTest {
 
     @Test
@@ -143,4 +145,29 @@ class PortefeuilleTest {
 
         assertEquals("", portefeuille.getNom(), "Le portefeuille devrait accepter un nom vide (si c'est permis par les règles métier)");
     }
+
+    @Test
+void testGetActions() {
+    // Création d'un utilisateur
+    User user = new User("Dupont", "Jean");
+
+    // Création d'un portefeuille
+    Portefeuille portefeuille = new Portefeuille("Investissements", user);
+
+    // Vérification que la liste des actions est initialement vide
+    List<Action> actions = portefeuille.getActions();
+    assertNotNull(actions, "La liste des actions ne doit pas être null");
+    assertTrue(actions.isEmpty(), "La liste des actions doit être vide à l'initialisation");
+
+    // Ajout d'actions au portefeuille
+    Action action1 = new ActionSimple("AAPL");
+    Action action2 = new ActionSimple("GOOGL");
+    portefeuille.getActions().add(action1);
+    portefeuille.getActions().add(action2);
+
+    // Vérification que les actions ont été ajoutées
+    assertEquals(2, portefeuille.getActions().size(), "La liste des actions doit contenir deux éléments");
+    assertEquals("AAPL", portefeuille.getActions().get(0).getLibelle(), "Le premier élément de la liste doit être AAPL");
+    assertEquals("GOOGL", portefeuille.getActions().get(1).getLibelle(), "Le deuxième élément de la liste doit être GOOGL");
+}
 }
