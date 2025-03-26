@@ -58,15 +58,23 @@ public class User {
     }
 
     public void setNom(String nom) {
+        if (nom == null) {
+            throw new NullPointerException("Le nom ne peut pas être null");
+        }
         this.nom = nom;
+    }
+    
+    public void setPrenom(String prenom) {
+        if (prenom == null) {
+            throw new NullPointerException("Le prénom ne peut pas être null");
+        }
+        this.prenom = prenom;
     }
 
     public void setId(int id) {
         this.id = id;
     }
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+
     public void setPortefeuilles(List<Portefeuille> portefeuilles) {
         this.portefeuilles = portefeuilles;
     }
@@ -92,6 +100,22 @@ public class User {
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         return result;
+    }
+
+    public void addPortefeuille(Portefeuille portefeuille) {
+        if (portefeuille == null) {
+            throw new IllegalArgumentException("Le portefeuille ne peut pas être null");
+        }
+        portefeuilles.add(portefeuille);
+    }
+
+    public Portefeuille getPortefeuilleById(int id) {
+        for (Portefeuille portefeuille : portefeuilles) {
+            if (portefeuille.getId() == id) {
+                return portefeuille;
+            }
+        }
+        return null; // Retourne null si aucun portefeuille avec cet ID n'est trouvé
     }
 }
 

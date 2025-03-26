@@ -16,11 +16,15 @@
 
 package tp04.metier;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for User
@@ -41,6 +45,68 @@ class UserTest {
     
         assertEquals(1, user.getPortefeuilles().size(), "La liste des portefeuilles doit contenir un élément");
         assertEquals("Crypto", user.getPortefeuilles().get(0).getNom(), "Le nom du portefeuille doit être 'Crypto'");
+    }
+
+    @Test
+    void testAddPortefeuilleNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(IllegalArgumentException.class, 
+            () -> user.addPortefeuille(null), 
+            "L'ajout d'un portefeuille null devrait lancer une exception IllegalArgumentException");
+    }
+
+    @Test
+    void testGetPortefeuilleByIdInexistant() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille A", user);
+        user.addPortefeuille(portefeuille);
+
+        Portefeuille result = user.getPortefeuilleById(999);  // ID inexistant
+        assertEquals(null, result, "La méthode devrait retourner null si aucun portefeuille avec l'ID donné n'est trouvé");
+    }
+
+    @Test
+    void testNomSetterAvecNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(NullPointerException.class, 
+            () -> user.setNom(null), 
+            "Le setter pour le nom devrait lancer une exception NullPointerException si le nom est null");
+    }
+
+    @Test
+    void testPrenomSetterAvecNull() {
+        User user = new User("Dupont", "Jean");
+        assertThrows(NullPointerException.class, 
+            () -> user.setPrenom(null), 
+            "Le setter pour le prénom devrait lancer une exception NullPointerException si le prénom est null");
+    }
+
+    @Test
+    void testSetIdNegative() {
+        User user = new User("Durand", "Paul");
+        user.setId(-5);
+        assertEquals(-5, user.getId(), "L'ID devrait pouvoir être défini sur une valeur négative, même si cela n'est pas logique");
+    }
+
+    @Test
+    public void testAddPortefeuille() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille A", user);
+        user.addPortefeuille(portefeuille);
+
+        assertEquals(1, user.getPortefeuilles().size());
+        assertEquals("Portefeuille A", user.getPortefeuilles().get(0).getNom());
+    }
+
+    @Test
+    public void testGetPortefeuilleById() {
+        User user = new User("Martin", "Paul");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille D", user);
+        user.addPortefeuille(portefeuille);
+
+        Portefeuille retrievedPortefeuille = user.getPortefeuilleById(portefeuille.getId());
+        assertNotNull(retrievedPortefeuille);
+        assertEquals("Portefeuille D", retrievedPortefeuille.getNom());
     }
 
     @Test
