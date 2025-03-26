@@ -19,6 +19,9 @@ package tp04.metier;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Test class for User
  * 
@@ -26,6 +29,38 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class UserTest {
+
+
+
+    @Test
+    void testSetPortefeuilles() {
+        User user = new User("Nom", "Prenom");
+        List<Portefeuille> list = new ArrayList<>();
+        list.add(new Portefeuille("Crypto", user)); // Ajout de l'utilisateur dans le constructeur
+        user.setPortefeuilles(list);
+    
+        assertEquals(1, user.getPortefeuilles().size(), "La liste des portefeuilles doit contenir un élément");
+        assertEquals("Crypto", user.getPortefeuilles().get(0).getNom(), "Le nom du portefeuille doit être 'Crypto'");
+    }
+
+    @Test
+    void testSetId() {
+    User user = new User("Nom", "Prenom");
+    user.setId(42);
+
+    assertEquals(42, user.getId(), "Le setter de l'ID devrait modifier l'ID");
+    }
+
+    @Test
+    void testEqualsMemeIdNomDifferents() {
+    User user1 = new User("Dupont", "Jean");
+    User user2 = new User("Durand", "Paul");
+    user2.setId(user1.getId());  // Force même ID
+
+    assertNotEquals(user1, user2, "Deux utilisateurs avec le même ID mais noms/prénoms différents ne doivent pas être égaux");
+}
+
+
 
     @Test
     void testUserCreation() {
@@ -36,6 +71,8 @@ class UserTest {
         assertNotNull(user.getPortefeuilles());
         assertTrue(user.getPortefeuilles().isEmpty());
     }
+
+
 
     @Test
     void testEqualsAvecObjetNonUser() {
