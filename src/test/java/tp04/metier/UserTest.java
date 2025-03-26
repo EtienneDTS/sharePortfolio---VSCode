@@ -16,11 +16,15 @@
 
 package tp04.metier;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for User
@@ -41,6 +45,27 @@ class UserTest {
     
         assertEquals(1, user.getPortefeuilles().size(), "La liste des portefeuilles doit contenir un élément");
         assertEquals("Crypto", user.getPortefeuilles().get(0).getNom(), "Le nom du portefeuille doit être 'Crypto'");
+    }
+
+    @Test
+    public void testAddPortefeuille() {
+        User user = new User("Dupont", "Jean");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille A", user);
+        user.addPortefeuille(portefeuille);
+
+        assertEquals(1, user.getPortefeuilles().size());
+        assertEquals("Portefeuille A", user.getPortefeuilles().get(0).getNom());
+    }
+
+    @Test
+    public void testGetPortefeuilleById() {
+        User user = new User("Martin", "Paul");
+        Portefeuille portefeuille = new Portefeuille("Portefeuille D", user);
+        user.addPortefeuille(portefeuille);
+
+        Portefeuille retrievedPortefeuille = user.getPortefeuilleById(portefeuille.getId());
+        assertNotNull(retrievedPortefeuille);
+        assertEquals("Portefeuille D", retrievedPortefeuille.getNom());
     }
 
     @Test

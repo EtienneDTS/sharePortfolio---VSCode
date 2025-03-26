@@ -93,5 +93,21 @@ public class User {
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         return result;
     }
+
+    public void addPortefeuille(Portefeuille portefeuille) {
+        if (portefeuille == null) {
+            throw new IllegalArgumentException("Le portefeuille ne peut pas être null");
+        }
+        portefeuilles.add(portefeuille);
+    }
+
+    public Portefeuille getPortefeuilleById(int id) {
+        for (Portefeuille portefeuille : portefeuilles) {
+            if (portefeuille.getId() == id) {
+                return portefeuille;
+            }
+        }
+        return null; // Retourne null si aucun portefeuille avec cet ID n'est trouvé
+    }
 }
 
