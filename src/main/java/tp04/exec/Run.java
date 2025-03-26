@@ -15,84 +15,67 @@
  */
 package tp04.exec;
 
+
+import java.util.List;
+
 import tp04.metier.ActionComposee;
 import tp04.metier.ActionSimple;
 import tp04.metier.Fournisseur;
 import tp04.metier.Jour;
 import tp04.metier.Menu;
+import tp04.metier.Option;
 
 
 public class Run {
 
     public static void main(String[] args) {
-        ActionSimple bnp;
-        ActionSimple axa;
-        ActionComposee bqAss;
-        Jour j1 = null;
-        Jour j2 = null;
+        ActionSimple actionSimple1;
+        ActionSimple actionSimple2;
+        ActionComposee actionComposee1;
+        Jour jour1;
+        Jour jour2;
 
-        Menu menu = new Menu();
+        // init des objets metiers Jour
+        jour1 = new Jour(2014, 1);
+        System.out.println(jour1);
+        jour2 = new Jour(2014, 2);
+        System.out.println(jour2);
 
         // creation d'actions simples et composée
-        bnp = new ActionSimple("BNP");
-        axa = new ActionSimple("AXA");
-        bqAss = new ActionComposee("Banque-Assurance");
+        actionSimple1 = new ActionSimple("BNP");
+        System.out.println(actionSimple1);
+        actionSimple2 = new ActionSimple("AXA");
+        System.out.println(actionSimple2);
+        actionComposee1 = new ActionComposee("Banque-Assurance");
+        System.out.println(actionComposee1);
+
         // enrg de la composition de l'action composée
-        bqAss.enrgComposition(axa, 0.3f);
-        bqAss.enrgComposition(bnp, 0.7f);
+        actionComposee1.enrgComposition(actionSimple1, 0.3f);
+        actionComposee1.enrgComposition(actionSimple2, 0.7f);
+        System.out.println(actionComposee1);
+
         // enrg. de 2 cours pour chaque action 
-        axa.enrgCours(j1, 200);
-        axa.enrgCours(j2, 250);
-        bnp.enrgCours(j1, 100);
-        bnp.enrgCours(j2, 200);
+        actionSimple1.enrgCours(jour1, 200);
+        actionSimple1.enrgCours(jour2, 250);
+        actionSimple2.enrgCours(jour1, 100);
+        actionSimple2.enrgCours(jour2, 200);
 
-        Fournisseur.addAction(bqAss);
-        Fournisseur.addAction(axa);
-        Fournisseur.addAction(bnp);
+        Fournisseur.addAction(actionComposee1);
+        Fournisseur.addAction(actionSimple1);
+        Fournisseur.addAction(actionSimple2);
+        List listeActionFournisseur = Fournisseur.getActionPropose();
+        System.out.println(listeActionFournisseur);
 
-    // private static int lireChoixUtilisateur() {
-    //     Scanner scanner = new Scanner(System.in);
-    //     try {
-    //         return Integer.parseInt(scanner.nextLine());
-    //     } catch (NumberFormatException e) {
-    //         System.out.println("Entrée non reconnue, veuillez entrer un nombre valide");
-    //         return -1;
-    //     }
-    // }
+        // créer un menu
+        Menu menu = new Menu();
 
-    //  private static void traiterChoix(int choix) {
-    // //     try {
-    // //         switch (choix) {
-    // //             case 1:
-    // //                 menu.
-    // //                 break;
-    // //             case 2:
-    // //                 Functions.creerEleveEtAffecterMaison(eleveDAO, maisonDAO, scanner);
-    // //                 break;
-    // //             case 3:
-    // //                 Functions.evaluerEleve(eleveDAO, matiereDAO, evaluerDAO, scanner);
-    // //                 break;
-    // //             case 4:
-    // //                 Functions.afficherClassementMaisons(eleveDAO);
-    // //                 break;
-    // //             case 5:
-    // //                 Functions.afficherTop10Eleves(eleveDAO);
-    // //                 break;
-    // //             case 6:
-    // //                 jouerPartieChifoumi();
-    // //                 break;
-    // //             case 7:
-    // //                 Functions.printWithDelay("🧙🏻 Au revoir !\n", 10);
-    // //                 scanner.close();
-    // //                 System.exit(0);
-    // //             default:
-    // //                 Functions.printWithDelay("Choix non reconnu, veuillez réessayer.\n", 10);
-    // //         }
-    // //     } catch (Exception e) {
-    // //         Functions.printWithDelay("Une erreur est survenue : " + e.getMessage() + "\n", 10);
-    // //         e.printStackTrace();
-    // //     }
-    //  }
+        // créer des options 
+        Option option1  = new Option("Afficher la liste des options",menu);
+        Option option2  = new Option("Afficher la liste des portefeuille",menu);
+
+        // afficher dans le menu
+        System.out.println(menu.afficherMenu());
+
+    }
 
 }
-
