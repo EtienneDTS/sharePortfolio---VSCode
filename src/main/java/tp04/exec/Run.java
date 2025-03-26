@@ -49,7 +49,6 @@ public class Run {
         Fournisseur.addAction(bqAss);
         Fournisseur.addAction(axa);
         Fournisseur.addAction(bnp);
-    }
 
     // private static int lireChoixUtilisateur() {
     //     Scanner scanner = new Scanner(System.in);
