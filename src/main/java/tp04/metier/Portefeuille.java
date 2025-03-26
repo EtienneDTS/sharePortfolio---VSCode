@@ -29,7 +29,7 @@ public class Portefeuille {
     private class LignePortefeuille {
 
         private Action action;
-
+        private String nomPortefeuille;
         private int qte;
 
         public int getQte() {
@@ -44,6 +44,17 @@ public class Portefeuille {
             return this.action;
         }
 
+        //Setter et getter pour le nom portefeuille
+        public String getNomPortefeuille() {
+            return nomPortefeuille;
+        }
+
+        public void setNomPortefeuille(String nomPortefeuille) {
+            this.nomPortefeuille = nomPortefeuille;
+        }
+
+        // fin
+
         public LignePortefeuille(Action action, int qte) {
             this.action = action;
             this.qte = qte;
@@ -56,6 +67,7 @@ public class Portefeuille {
 
     public Portefeuille() {
         this.mapLignes = new HashMap();
+        
     }
 
     public void acheter(Action a, int q) {
